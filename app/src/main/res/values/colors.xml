@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Basic Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Primary Colors -->
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#CC0059</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <!-- Theme Colors -->
+    <color name="first">#432967</color>
+    <color name="second">#782D65</color>
+    <color name="third">#C3305D</color>
+    <color name="four">#F0445E</color>
+    <color name="five">#FD9367</color>
+    <color name="purple_200">#BB86FC</color>
+
+    <!-- Background Colors -->
+    <color name="backgroundLight">#E3F2FD</color>
+    <color name="backgroundSoftGreen">#E8F5E9</color>
+    <color name="lightGradient">#F7F9FC</color>
+
+    <!-- Functional Background Colors -->
+    <color name="helplineBG">#FB9EC4</color>
+    <color name="triggersBG">#FFDAC0</color>
+
+    <!-- Text Colors -->
+    <color name="textPrimary">#37474F</color>
+    <color name="textSecondary">#607D8B</color>
+    <color name="darkGray">#4A4A4A</color>
+    <color name="mediumGray">#757575</color>
+    <color name="lightGray">#D3D3D3</color>
+
+    <!-- Button & UI Colors -->
+    <color name="buttonColor">#4DB6AC</color>
+    <color name="buttonText">#FFFFFF</color>
+
+    <!-- Gradient Colors -->
+    <color name="primaryBlue">#6EC6FF</color>
+    <color name="primaryGreen">#A7E0A1</color>
+    <color name="lightBlueGreenGradientStart">#B3E5FC</color>
+    <color name="lightBlueGreenGradientEnd">#C8E6C9</color>
+    <color name="accentLightBlue">#81D4FA</color>
+    <color name="accentLightGreen">#AED581</color>
+
+    <!-- Additional Colors for Contrast -->
+    <color name="softYellow">#FFEB3B</color>
+    <color name="warmOrange">#FF9800</color>
+    <color name="deepRed">#D32F2F</color>
+
+    <!-- Additional Gradient Variants -->
+    <color name="gradientMidBlue">#90CAF9</color>
+    <color name="gradientMidGreen">#A5D6A7</color>
+
+
+    <color name="gray_light">#E0E0E0</color>
+    <color name="gray_dark">#757575</color>
+    <color name="primaryLightBlue">#4C9AFF</color>
+    <color name="primaryDark">#121212</color>
+
+
+
+    <color name="primary">#FF6F61</color>
+    <color name="primaryColor">#FF6F61</color>
+    <color name="error">#D72638</color>
+</resources>
