@@ -1,104 +1,98 @@
 package com.example.safety_project;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.location.Location;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.telephony.SmsManager;
-import android.widget.Toast;
+import android.util.Log;
+import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_LOCATION_PERMISSION = 1;
-    private static final int REQUEST_SMS_PERMISSION = 2;
-    private FusedLocationProviderClient fusedLocationClient;
-    DatabaseHelper myDB;
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        myDB = new DatabaseHelper(this);
-    }
-
-    public void sendEmergencySMS() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
-        } else {
-            getLastLocation();
-        }
-    }
-
-    private void getLastLocation() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            Task<Location> locationTask = fusedLocationClient.getLastLocation();
-            locationTask.addOnSuccessListener(new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-                    if (location != null) {
-                        String locationMessage = "I need help! My location: https://www.google.com/maps/search/?api=1&query="
-                                + location.getLatitude() + "," + location.getLongitude();
-                        sendSMS(locationMessage);
-                    } else {
-                        Toast.makeText(MainActivity.this, "Unable to get location", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
-    }
-
-    private void sendSMS(String message) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, REQUEST_SMS_PERMISSION);
-        } else {
-            ArrayList<String> contacts = getEmergencyContacts();
-            SmsManager smsManager = SmsManager.getDefault();
-            for (String number : contacts) {
-                smsManager.sendTextMessage(number, null, message, null, null);
-            }
-            Toast.makeText(this, "Emergency SMS sent", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private ArrayList<String> getEmergencyContacts() {
-        ArrayList<String> contacts = new ArrayList<>();
-        Cursor data = myDB.getListContents();
-        while (data.moveToNext()) {
-            contacts.add(data.getString(1));
-        }
-        return contacts;
+//        Bundle extras = getIntent().getExtras();
+//        String V1 = extras.getString(Intent.EXTRA_TEXT);
+//        Log.d("NumberMainActivity", V1);
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_LOCATION_PERMISSION) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getLastLocation();
-            } else {
-                Toast.makeText(this, "Location permission required", Toast.LENGTH_SHORT).show();
-            }
-        } else if (requestCode == REQUEST_SMS_PERMISSION) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                sendEmergencySMS();
-            } else {
-                Toast.makeText(this, "SMS permission required", Toast.LENGTH_SHORT).show();
-            }
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String V1 = extras.getString(Intent.EXTRA_TEXT);
+            Log.d("NumberMainActivity", V1);
         }
     }
+
+    public void addRelative(View v) {
+        Intent i = new Intent(getApplicationContext(), AddRelative.class);
+        startActivity(i);
+    }
+
+    public void helplineNumbers(View v) {
+        Intent i = new Intent(getApplicationContext(), helplineCall.class);
+        startActivity(i);
+    }
+
+    public void triggers(View v) {
+        Intent i = new Intent(getApplicationContext(), TrigActivity.class);
+        startActivity(i);
+    }
+
+    public void developedBy(View v) {
+        Intent i = new Intent(getApplicationContext(), DeveloperByActivity.class);
+        startActivity(i);
+    }
+
+    public void HowTo(View v){
+        Intent i = new Intent(getApplicationContext(), HowToSwipe.class);
+        startActivity(i);
+    }
+
+    public void LogOut(View v) {
+        Intent i = new Intent(getApplicationContext(), Login.class);
+        startActivity(i);
+    }
+
+    // New method to open webpage when the button is clicked
+    public void openWebpage(View v) {
+        String url = "https://www.facebook.com/groups/indianwomensgroup/"; // Replace with your actual link
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+//    @Override
+//    public boolean dispatchKeyEvent(KeyEvent event) {
+//
+//        int action, keycode;
+//
+//        action = event.getAction();
+//        keycode = event.getKeyCode();
+//
+//        switch (keycode) {
+//            case KeyEvent.KEYCODE_VOLUME_UP: {
+//                if (KeyEvent.ACTION_UP == action) {
+//                    count++;
+//                    String S1 = String.valueOf(count);
+//                    Log.d("upButton", S1);
+//                }
+//            }
+//            case KeyEvent.KEYCODE_VOLUME_DOWN:
+//                if (KeyEvent.ACTION_DOWN == action) {
+//                    count = 0;
+//                    String S2 = String.valueOf(count);
+//                    Log.d("downButton", S2);
+//                }
+//        }
+//        return super.dispatchKeyEvent(event);
+//    }
 }
