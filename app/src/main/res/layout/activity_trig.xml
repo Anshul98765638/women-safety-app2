@@ -49,6 +49,17 @@
                 android:layout_marginTop="20dp"
                 android:padding="10dp"
                 android:lineSpacingExtra="5dp" />
+
+            <!-- 🔹 ADD THIS BUTTON -->
+            <Button
+                android:id="@+id/triggerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Send SOS"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                android:backgroundTint="@android:color/holo_red_light"
+                android:textColor="@android:color/white"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
